@@ -49,4 +49,8 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
   end
 
+  def require_admin
+    head 404 unless current_user.admin?
+  end
+
 end
