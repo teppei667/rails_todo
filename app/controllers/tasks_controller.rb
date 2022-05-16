@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :editm, :update, :destroy]
   
   def index
-    @tasks = current_user.tasks.recent
+    @tasks = current_user.tasks.order(created_at: :desc)
   end
 
   def create
@@ -43,5 +43,5 @@ class TasksController < ApplicationController
   def set_task
     @task = current_user.tasks.find(params[:id])
   end
-  
+
 end
